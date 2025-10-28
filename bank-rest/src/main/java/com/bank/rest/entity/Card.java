@@ -15,9 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "cards")
 public class Card {
-    @Id private UUID id = UUID.randomUUID();
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "cardID", updatable = false, nullable = false)
+    private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userID", nullable = false)
     private User user;
 
     @Column(name="number_enc", nullable=false)
@@ -38,5 +42,13 @@ public class Card {
 
     private Instant createdAt = Instant.now();
     private Instant updatedAt;
+
+    // To view the transactions to specific card
+    @OneToMany(mappedBy = "fromCard", cascade = CascadeType.ALL)
+    private java.util.List<Transfer> outgoingTransfers;
+
+    @OneToMany(mappedBy = "toCard", cascade = CascadeType.ALL)
+    private java.util.List<Transfer> incomingTransfers;
+
 }
 

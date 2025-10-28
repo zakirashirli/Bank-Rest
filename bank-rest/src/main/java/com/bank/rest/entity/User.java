@@ -29,5 +29,11 @@ public class User {
     private Instant createdAt = Instant.now();
 
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Card> cards;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Transfer> transfers;
+
 
 }
