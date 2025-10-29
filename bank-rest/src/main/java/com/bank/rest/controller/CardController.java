@@ -1,7 +1,9 @@
 package com.bank.rest.controller;
 
 import com.bank.rest.entity.User;
-import com.bank.rest.dto.*;
+import com.bank.rest.dto.CardCreateRequest;
+import com.bank.rest.dto.CardFilter;
+import com.bank.rest.dto.CardResponse;
 import com.bank.rest.service.CardService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,10 +47,7 @@ public class CardController {
     }
 
     @PatchMapping("/{cardId}/block")
-    public void blockCard(
-            @AuthenticationPrincipal User user,
-            @PathVariable UUID cardId
-    ) {
+    public void blockCard(@AuthenticationPrincipal User user, @PathVariable UUID cardId) {
         cardService.blockCard(cardId, user);
     }
 
@@ -62,4 +61,3 @@ public class CardController {
         cardService.deleteCard(cardId);
     }
 }
-

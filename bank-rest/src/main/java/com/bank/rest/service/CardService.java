@@ -36,8 +36,6 @@ public class CardService {
     }
 
 
-     // Create a new card for the user.
-
     @Transactional
     public CardResponse createCard(Long userId, CardCreateRequest req) {
         var user = userRepo.findById(userId)

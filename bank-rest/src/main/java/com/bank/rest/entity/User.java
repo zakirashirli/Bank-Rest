@@ -24,7 +24,9 @@ public class User {
     @Column(name = "password",nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false) private UserRole role = UserRole.USER;
+    @Column(nullable = false)
+    private UserRole role = UserRole.USER;
+    @Column(nullable = false)
     private boolean enabled = true;
     private Instant createdAt = Instant.now();
 
